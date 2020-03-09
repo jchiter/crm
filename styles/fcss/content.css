@@ -477,7 +477,6 @@ form .container .col-md-5 .form-group
 
 form .container button
 {
-    float: left;
     margin-right: 5px;
 }
 
@@ -643,19 +642,20 @@ table.table-condensed tr td.separator
 
 .dashboard-grid-wrap
 {
-    max-width: 812px;
+    width: 100%;
 }
 
 .dashboard-grid
 {
-    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .dashboard-grid .grid-item
 {
     position: relative;
     font-family: inherit;
-    display: inline-table;
     font-size: 15px;
     padding: 15px;
     border-radius: 5px;
@@ -665,11 +665,13 @@ table.table-condensed tr td.separator
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     -moz-transition: all 0.3s;
-    width: 180px;
-    height: 187px;
-    margin: 0 10px;
     background-color: #5bc0de;
     color: #66f8ff;
+    flex-basis: 48%;
+    display: flex;
+    margin: 3px;
+    align-items: center;
+    flex-direction: column;
 }
 
 .dashboard-grid .grid-item:hover

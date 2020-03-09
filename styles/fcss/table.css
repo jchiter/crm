@@ -2,6 +2,14 @@
     Table
 */
 
+#viewPage {
+  overflow-x: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .limiter {
   width: 100%;
   margin: 0 auto;
@@ -19,14 +27,20 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 33px 30px;
+  padding: 0;
+}
+
+@media (min-height: 767px) {
+  .container-table100 {
+    padding: 33px 30px;
+  }
 }
 
 .wrap-table100
 {
-  width: 100%;
+  width: 99%;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .table {

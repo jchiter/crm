@@ -1,0 +1,94 @@
+.dialog-card .dialog-question-sign{
+    float: left;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    color:  #ffffff;
+    text-align: center;
+    line-height: 68px;
+    font-size: 40px;
+    margin-right: 50px;
+    background-color:  #b4d8f3;
+}
+
+.dialog-card .dialog-confirm-button,
+.dialog-card .dialog-reject-button{
+    font-weight: inherit;
+    box-sizing: border-box;
+    color: #ffffff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    padding: 12px 40px;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+}
+
+.dialog-card .dialog-confirm-button{
+    background-color:  #87bae1;
+    margin-right: 12px;
+}
+
+.dialog-card .dialog-reject-button{
+    background-color:  #e4749e;
+}
+
+.dialog-card button:hover{
+    opacity:0.96;
+}
+
+.dialog-card button:active{
+    position:relative;
+    bottom:-1px;
+}
+
+
+@media (max-width: 600px) {
+
+    .dialog-card{
+        width: 350px;
+        margin-left: -175px;
+        margin-top: -200px;
+        text-align: center;
+
+        padding: 45px 50px;
+    }
+
+    .dialog-card .dialog-question-sign{
+        margin: 0 auto 25px;
+    }
+
+    .dialog-card .dialog-question-sign,
+    .dialog-card .dialog-info{
+        float: none;
+    }
+
+    .dialog-card p{
+        text-align: left;
+    }
+
+    .dialog-card .dialog-confirm-button{
+        float: left;
+    }
+
+    .dialog-card .dialog-reject-button{
+        float: right;
+    }
+}
+
+/* If you don't want the dialog to be responsive, remove this media query */
+
+@media (max-width: 400px) {
+
+    .dialog-card{
+        width: 250px;
+        margin-left: -125px;
+
+        padding: 25px 30px;
+    }
+
+    .dialog-card .dialog-confirm-button,
+    .dialog-card .dialog-reject-button{
+        padding: 12px 32px;
+    }
+
+}

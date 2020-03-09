@@ -1,0 +1,689 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    color: black;
+    overflow-y: auto;
+    font: normal 12px 'Comfortaa', sans-serif;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+a.link
+{
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.opacityHide
+{
+    opacity: 0;
+}
+
+.displayHide
+{
+    display: none;
+}
+
+.center
+{
+    text-align: center;
+    margin: 0 auto;
+}
+
+button a
+{
+    float: left;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.buttonGlobal
+{
+    text-decoration:none; text-align:center;
+    padding:11px 32px; 
+    border:solid 1px #004F72; 
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px; 
+    border-radius: 4px; 
+    font:18px Arial, Helvetica, sans-serif; 
+    font-weight:bold; 
+    color:#e5ffff; 
+    background-color:#3BA4C7; 
+    background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+    background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+    background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+    background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
+    background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
+    -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+    -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+    box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
+}
+
+.buttonGlobal:hover
+{
+    padding:11px 32px; 
+    border:solid 1px #004F72; 
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px; 
+    border-radius: 4px; 
+    font:18px Arial, Helvetica, sans-serif; 
+    font-weight:bold; 
+    color:#e5ffff; 
+    background-color:#5c95a8; 
+    background-image: -moz-linear-gradient(top, #5c95a8 0%, #5eaac4 100%); 
+    background-image: -webkit-linear-gradient(top, #5c95a8 0%, #5eaac4 100%); 
+    background-image: -o-linear-gradient(top, #5c95a8 0%, #5eaac4 100%); 
+    background-image: -ms-linear-gradient(top, #5c95a8 0% ,#5eaac4 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eaac4', endColorstr='#5eaac4',GradientType=0 ); 
+    background-image: linear-gradient(top, #5c95a8 0% ,#5eaac4 100%);   
+    -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+    -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+    box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+}
+ 
+.buttonGlobal:active
+{
+    padding:11px 32px; 
+    border:solid 1px #004F72; 
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px; 
+    border-radius: 4px; 
+    font:18px Arial, Helvetica, sans-serif; 
+    font-weight:bold; 
+    color:#e5ffff; 
+    background-color:#3f4d52; 
+    background-image: -moz-linear-gradient(top, #3f4d52 0%, #101f24 100%); 
+    background-image: -webkit-linear-gradient(top, #3f4d52 0%, #101f24 100%); 
+    background-image: -o-linear-gradient(top, #3f4d52 0%, #101f24 100%); 
+    background-image: -ms-linear-gradient(top, #3f4d52 0% ,#101f24 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#101f24', endColorstr='#101f24',GradientType=0 ); 
+    background-image: linear-gradient(top, #3f4d52 0% ,#101f24 100%);   
+    -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+    -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+    box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;
+}
+
+/*
+    Форма ввода данных заказа
+*/
+
+span.form-control-add
+{
+    background-color: #2470bf;
+    padding: 9px;
+    color: #fff;
+    float: right;
+    margin-right: -19px;
+    border-radius: 4px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+span.form-control-icon
+{
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    color: #b1b5ad;
+    float: right;
+    padding-right: 5px;
+    display: inline-block;
+}
+
+span.form-control-icon.remove
+{
+    /*margin-right: -13px;*/
+}
+
+span.form-control-icon.edit
+{
+    /*margin-right: 5px;*/
+}
+
+span.form-control-icon.check
+{
+    display: none;
+}
+
+span.form-control-add:hover,
+span.form-control-icon:hover
+{
+    opacity: 0.7;
+}
+
+form div.section-content
+{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+form div.section-content.hide
+{
+    display: none;
+}
+
+form div.section {
+    font: normal 20px 'Comfortaa', sans-serif;
+    color: white;
+    background-color: #2470bf;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: -50px;
+    width: 114.8%;
+}
+
+form div.section span {
+    background-color: #eb4744;
+    padding: 17px 22px;
+    border-radius: 10px;
+    -moz-border-radius: 50%;
+    color:#fff;
+    margin-right: 28px;
+}
+
+form div.section-footer
+{
+    text-align: right;
+}
+
+form div.section-footer button
+{
+    margin-left: 5px;
+}
+
+li.nav-item a,
+span.focus-input2,
+span.contact2-form-title,
+button.contact2-form-btn
+{
+    font: normal 20px 'Comfortaa', sans-serif;
+}
+
+nav.navbar-default
+{
+    margin-bottom: 0;
+}
+
+nav.navbar-default .container-fluid
+{
+    margin-top: 15px;
+}
+
+nav.navbar-default #logo
+{
+    background: url("../fimg/content/balloons.png") no-repeat;
+    width: 76px;
+    height: 83px;
+    float: left;
+    margin: 10px;
+    position: relative;
+}
+
+nav.navbar-default #logo:hover
+{
+    opacity: 0.7;
+}
+
+li.nav-item
+{
+    background-color: #2470bf;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+
+li.nav-item > a.nav-link
+{
+    cursor: pointer;
+    color: #fff;
+    background: none;
+    display: inline-block;
+}
+
+li.nav-item > a.nav-link > i.fa
+{
+    font-size: 23px;
+    padding-right: 5px;
+    vertical-align: bottom;
+}
+
+li.nav-item:hover > a.nav-link, li.nav-item:hover > i.fa,
+li.nav-item.active > a.nav-link, li.nav-item.active > i.fa,
+li.nav-item:hover > a:hover, li.nav-item:hover > i:hover
+{
+    color: #000;
+    background: none;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover
+{
+    color: #fff;
+    background: none;
+}
+
+li.nav-item:hover, li.nav-item.active
+{
+    background-color: #248ee6;
+}
+
+form textarea
+{
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: vertical;
+    min-height: 150px;
+    font: normal 20px 'Comfortaa', sans-serif;
+}
+
+form input.form-control
+{
+    background-color: #f8f8f8;
+}
+
+form #orderdatepicker
+{
+    float: left;
+    margin-bottom: 40px;
+}
+
+form #ordertimepicker
+{
+    float: right;
+}
+
+form .bootstrap-datetimepicker-widget:before
+{
+    content: '';
+    display: none;
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a
+{
+    font: normal 15px 'Comfortaa', sans-serif;
+}
+
+.dropdown-menu > li > a
+{
+    padding: 5px 20px;
+}
+
+table.orderView {
+    font: normal 15px 'Comfortaa', sans-serif;
+    text-align: left;
+    color: #452F21;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+    line-height: 20px;
+    vertical-align: middle;
+    border-top: 0;
+}
+
+.table tr th:first-child,
+.table tr td:first-child
+{
+    width: 40px;
+    text-align: center;
+}
+
+.table tr th span,
+.table tr td span
+{
+    line-height: 25px;
+    display: block;
+}
+
+.table tr td span.bottom
+{
+    font-size: 14px;
+}
+
+.table tr td
+{
+    border-right: 1px solid #d7d7d7;
+}
+
+.table tr td.desc
+{
+    border-bottom: 2px solid #248ee6;
+    text-align: left;
+}
+
+.table tr td.desc a
+{
+	text-decoration: underline;
+}
+
+.table tr th
+{
+    background-color: #2470bf;
+    color: #fff;
+    border-bottom: 2px solid #2470bf;
+}
+
+.table tr:last-child td
+{
+    border-bottom: 0;
+}
+
+.table tr
+{
+    background-color: white;
+}
+
+.table tr td span.top i,
+.table tr td span.bottom i
+{
+    font-size: 25px;
+    margin-right: 10px;
+    display: inline-table;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.table tr td span.top i sub,
+.table tr td span.bottom i sub
+{
+    font-size: 10px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
+
+.table tr:nth-child(even) td {
+
+}
+
+tr:nth-child(even) {
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+form .container
+{
+    background: white;
+    width: 100%;
+    padding: 15px;
+    font: normal 16px 'Comfortaa', sans-serif;
+}
+
+form .container .filterDayContent
+{
+    font-size: 12px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+form .container .filterDayContent span
+{
+    font-weight: bold;
+    font-size: 14px;
+    color: skyblue;
+    text-decoration: underline dotted;
+    cursor: pointer;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    padding-right: 10px;
+}
+
+form .container .filterDayContent span:hover,
+form .container .filterDayContent span.active
+{
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+form .container .filterDayContent span.active
+{
+	cursor: default;
+}
+
+form .container .col-md-5 .form-group
+{
+    margin-bottom: 0;
+}
+
+form .container button
+{
+    float: left;
+    margin-right: 5px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+#progressbar li {
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 31.33%;
+    float: left;
+    position: relative;
+    margin-left: 13px;
+}
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -46%;
+    top: 9px;
+    z-index: 0; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+    background: #27AE60;
+    color: white;
+}
+
+form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+}
+
+form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+form .action-button {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+form .action-button:hover, form .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+table.table-condensed tr td.separator
+{
+    font-size: 1.2em;
+}
+
+.wrap-input2 .keywordContent
+{
+    margin-top: 5px;
+}
+
+.wrap-input2 .keywordContent span.keywordBtn,
+.wrap-input2 .keywordContent span.keywordValue
+{
+    font-weight: bold;
+    font-size: 14px;
+    color: skyblue;
+    text-decoration: underline dotted;
+    cursor: pointer;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.wrap-input2 .keywordContent span.keywordValue
+{
+    font-weight: normal;
+    color: #5d97b1;
+    display: inline-table;
+    line-height: 1.5em;
+}
+
+.wrap-input2 .keywordContent sup
+{
+    color: #5d97b1;
+    cursor: pointer;
+    padding-right: 8px;
+}
+
+.wrap-input2 .keywordContent span.keywordBtn:hover,
+.wrap-input2 .keywordContent span.keywordValue:hover,
+.wrap-input2 .keywordContent sup
+{
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.wrap-input2 .keywordContent .keywordInsert
+{
+    display: none;
+    margin-bottom: 5px;
+    position: absolute;
+    width: 100%;
+    z-index: 9;
+}
+
+.wrap-input2 .keywordContent .keywordInsert .keywordInsert-wrap1
+{
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    height: 35px;
+    top: -2px;
+    left: -2px;
+}
+
+.wrap-input2 .keywordContent .keywordInsert button
+{
+    display: inline-table;
+}
+
+.wrap-input2 .keywordContent .keywordInsert input.keywordText
+{
+    width: 93.3%;
+    display: inline-table;
+    height: 33px;
+}
+
+.dashboard-grid-wrap
+{
+    max-width: 812px;
+}
+
+.dashboard-grid
+{
+    margin-bottom: 20px;
+}
+
+.dashboard-grid .grid-item
+{
+    position: relative;
+    font-family: inherit;
+    display: inline-table;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    width: 180px;
+    height: 187px;
+    margin: 0 10px;
+    background-color: #5bc0de;
+    color: #66f8ff;
+}
+
+.dashboard-grid .grid-item:hover
+{
+    box-shadow: 0 0 10px 3px #9adbef;
+    color: #3e767d;
+}
+
+.dashboard-grid .grid-item i.fa
+{
+    font-size: 70px;
+    width: 100%;
+    height: 140px;
+    padding-top: 25%;
+    padding-bottom: 32px;
+    text-align: center;
+}

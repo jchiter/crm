@@ -1,0 +1,9 @@
+@import url('fcss/jquery-ui/jquery-ui.css');
+@import url('fcss/jquery-ui/jquery-ui.structure.css');
+@import url('fcss/jquery-ui/jquery-ui.theme.css');
+@import url('fcss/fancy/jquery.fancybox.css');
+@import url('fcss/fancy/jquery.fancybox-buttons.css');
+@import url('fcss/fancy/jquery.fancybox-thumbs.css');
+@import url('fcss/confirm.css');
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Rubik:400,500&subset=cyrillic');

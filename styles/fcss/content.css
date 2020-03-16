@@ -303,15 +303,10 @@ form input.form-control
     background-color: #f8f8f8;
 }
 
-form #orderdatepicker
+form .datepicker
 {
-    float: left;
-    margin-bottom: 40px;
-}
-
-form #ordertimepicker
-{
-    float: right;
+    width: 49%;
+    display: inline-block;
 }
 
 form .bootstrap-datetimepicker-widget:before
@@ -667,11 +662,18 @@ table.table-condensed tr td.separator
     -moz-transition: all 0.3s;
     background-color: #5bc0de;
     color: #66f8ff;
-    flex-basis: 48%;
+    flex-basis: 8%;
     display: flex;
     margin: 3px;
     align-items: center;
     flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .dashboard-grid .grid-item
+    {
+        flex-basis: 48%;
+    }
 }
 
 .dashboard-grid .grid-item:hover

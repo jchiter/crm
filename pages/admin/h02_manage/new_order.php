@@ -8,28 +8,36 @@ if ($httpHandler->GetAccessLevel() <= 0) {
 
 ?>
 
-<form class="contact2-form" method="post" id="uploadForm" style="width: 800px;">
+<form class="contact2-form new-order" method="post" id="uploadForm">
     <fieldset>
         <div class="section"><span>1</span>Информация о заказе</div>
-        <div class="wrap-input2 validate-input" style="border-bottom: 0; min-height: 227px;">
-            <div id="orderdatepicker"><input type='hidden' name="<?php echo CaptionField::$inputDate; ?>" class="form-control"/></div>
-            <div id="ordertimepicker"><input type='hidden' name="<?php echo CaptionField::$inputTime; ?>" class="form-control"/></div>
+        <div class="wrap-input2 validate-input row" style="border-bottom: 0; min-height: 227px;">
+            <div class="col-md-6" id="orderdatepicker"><input type='hidden' name="<?php echo CaptionField::$inputDate; ?>" class="form-control"/></div>
+            <div class="col-md-6" id="ordertimepicker"><input type='hidden' name="<?php echo CaptionField::$inputTime; ?>" class="form-control"/></div>
         </div>
         <br><br>
 
-        <div class="wrap-input2 validate-input" style="width: 33%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputAmount; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
-            <span class="focus-input2" data-placeholder="Сумма"></span>
-        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputAmount; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
+                    <span class="focus-input2" data-placeholder="Сумма"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 33%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputDiscount; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
-            <span class="focus-input2" data-placeholder="Скидка"></span>
-        </div>
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputDiscount; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
+                    <span class="focus-input2" data-placeholder="Скидка"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 33%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputPrepay; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
-            <span class="focus-input2" data-placeholder="Предоплата"></span>
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputPrepay; ?>" oninput="if (this.value.length >= 9) { this.value = this.value.slice(0, 9); }">
+                    <span class="focus-input2" data-placeholder="Предоплата"></span>
+                </div>
+            </div>
         </div>
 
         <div class="wrap-input2 validate-input" style="border-bottom: 0;">
@@ -89,42 +97,57 @@ if ($httpHandler->GetAccessLevel() <= 0) {
 
     <fieldset>
         <div class="section"><span>2</span>Информация о заказчике</div>
-        <div class="wrap-input2 validate-input" style="border-bottom: 0; width: 50%; display: inline-table;">
-            <select name="<?php echo CaptionField::$inputSex; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputSex; ?>" data-width="100%" onchange="$(function() {
-                    $('.selectpicker#<?php echo captionfield::$inputName; ?>').removeAttr('disabled');
-                    $('.selectpicker#<?php echo captionfield::$inputName; ?>').selectpicker('refresh');
-                    })">
-                <option value="-1" data-hidden="true">Выберите пол...</option>
-                <?php
-                $resultSex = $sexTable->Select();
-                while ($item = $db->fetch_array($resultSex))
-                    echo "<option value=\"" . $item[SexTableStruct::$columnID] . "\">" . $item[SexTableStruct::$columnName] . "</option>";
-                ?>
-            </select>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputSex; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputSex; ?>" data-width="100%" onchange="$(function() {
+                            $('.selectpicker#<?php echo captionfield::$inputName; ?>').removeAttr('disabled');
+                            $('.selectpicker#<?php echo captionfield::$inputName; ?>').selectpicker('refresh');
+                            })">
+                        <option value="-1" data-hidden="true">Выберите пол...</option>
+                        <?php
+                        $resultSex = $sexTable->Select();
+                        while ($item = $db->fetch_array($resultSex))
+                            echo "<option value=\"" . $item[SexTableStruct::$columnID] . "\">" . $item[SexTableStruct::$columnName] . "</option>";
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputName; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputName; ?>" disabled data-live-search="true" data-showremove="true" data-showedit="true" data-width="100%" data-size="10">
+                        <option data-hidden="true">Выберите имя...</option>
+                        <?php
+                        $resultName = $nameTable->Select();
+                        while ($item = $db->fetch_array($resultName))
+                            echo "<option value=\"" . $item[NameTableStruct::$columnID] . "\">" . $item[NameTableStruct::$columnName] . "</option>";
+                        ?>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <div class="wrap-input2 validate-input" style="border-bottom: 0; width: 49.4%; display: inline-table;">
-            <select name="<?php echo CaptionField::$inputName; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputName; ?>" disabled data-live-search="true" data-showremove="true" data-showedit="true" data-width="100%" data-size="10">
-                <option data-hidden="true">Выберите имя...</option>
-                <?php
-                $resultName = $nameTable->Select();
-                while ($item = $db->fetch_array($resultName))
-                    echo "<option value=\"" . $item[NameTableStruct::$columnID] . "\">" . $item[NameTableStruct::$columnName] . "</option>";
-                ?>
-            </select>
-        </div>
-        <div class="wrap-input2 validate-input" style="width: 21%; display: inline-table;">
-            <input type="text" class="input2 input-medium bfh-phone" data-format="+7 (ddd) ddd-dd-dd" maxlength="18" name="<?php echo CaptionField::$inputPhone; ?>">
-            <span class="focus-input2" data-placeholder="Телефон"></span>
-        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input type="text" class="input2 input-medium bfh-phone" data-format="+7 (ddd) ddd-dd-dd" maxlength="18" name="<?php echo CaptionField::$inputPhone; ?>">
+                    <span class="focus-input2" data-placeholder="Телефон"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 67%; display: inline-table;">
-            <input class="input2" type="text" name="<?php echo CaptionField::$inputAddPhone; ?>"><span class="focus-input2" data-placeholder="Телефон доп."></span>
-        </div>
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="text" name="<?php echo CaptionField::$inputAddPhone; ?>"><span class="focus-input2" data-placeholder="Телефон доп."></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 9%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputAge; ?>" oninput="if (this.value.length >= 2) { this.value = this.value.slice(0, 2); }">
-            <span class="focus-input2" data-placeholder="Возраст"></span>
+            <div class="col-md-4">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputAge; ?>" oninput="if (this.value.length >= 2) { this.value = this.value.slice(0, 2); }">
+                    <span class="focus-input2" data-placeholder="Возраст"></span>
+                </div>
+            </div>
         </div>
 
         <div class="section-footer">
@@ -137,35 +160,49 @@ if ($httpHandler->GetAccessLevel() <= 0) {
 
     <fieldset>
         <div class="section"><span>3</span>Информация о доставке</div>
-        <div class="wrap-input2 validate-input" style="border-bottom: 0;">
-            <select name="<?php echo CaptionField::$inputStreet; ?>" class="selectpicker show-tick" data-live-search="true" data-showremove="true" data-showedit="true" data-width="100%" data-size="10">
-                <option data-hidden="true">Выберите улицу...</option>
-                <?php
-                $resultStreet = $streetTable->Select();
-                while ($item = $db->fetch_array($resultStreet))
-                    echo "<option value=\"" . $item[StreetTableStruct::$columnID] . "\">" . $item[StreetTableStruct::$columnName] . "</option>";
-                ?>
-            </select>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputStreet; ?>" class="selectpicker show-tick" data-live-search="true" data-showremove="true" data-showedit="true" data-width="100%" data-size="10">
+                        <option data-hidden="true">Выберите улицу...</option>
+                        <?php
+                        $resultStreet = $streetTable->Select();
+                        while ($item = $db->fetch_array($resultStreet))
+                            echo "<option value=\"" . $item[StreetTableStruct::$columnID] . "\">" . $item[StreetTableStruct::$columnName] . "</option>";
+                        ?>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <div class="wrap-input2 validate-input" style="width: 24.6%; display: inline-table;">
-            <input class="input2" type="text" name="<?php echo CaptionField::$inputHouse; ?>" oninput="if (this.value.length >= 5) { this.value = this.value.slice(0, 3); }">
-            <span class="focus-input2" data-placeholder="№ дома"></span>
-        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="text" name="<?php echo CaptionField::$inputHouse; ?>" oninput="if (this.value.length >= 5) { this.value = this.value.slice(0, 3); }">
+                    <span class="focus-input2" data-placeholder="№ дома"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 24.6%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputEntrance; ?>" oninput="if (this.value.length >= 2) { this.value = this.value.slice(0, 2); }">
-            <span class="focus-input2" data-placeholder="подъезд"></span>
-        </div>
+            <div class="col-md-3">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputEntrance; ?>" oninput="if (this.value.length >= 2) { this.value = this.value.slice(0, 2); }">
+                    <span class="focus-input2" data-placeholder="подъезд"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 24.6%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputFloor; ?>" oninput="if (this.value.length >= 3) { this.value = this.value.slice(0, 3); }">
-            <span class="focus-input2" data-placeholder="этаж"></span>
-        </div>
+            <div class="col-md-3">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputFloor; ?>" oninput="if (this.value.length >= 3) { this.value = this.value.slice(0, 3); }">
+                    <span class="focus-input2" data-placeholder="этаж"></span>
+                </div>
+            </div>
 
-        <div class="wrap-input2 validate-input" style="width: 24.6%; display: inline-table;">
-            <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputApart; ?>" oninput="if (this.value.length >= 4) { this.value = this.value.slice(0, 4); }">
-            <span class="focus-input2" data-placeholder="квартира"></span>
+            <div class="col-md-3">
+                <div class="wrap-input2 validate-input">
+                    <input class="input2" type="number" min="0" step="1" name="<?php echo CaptionField::$inputApart; ?>" oninput="if (this.value.length >= 4) { this.value = this.value.slice(0, 4); }">
+                    <span class="focus-input2" data-placeholder="квартира"></span>
+                </div>
+            </div>
         </div>
 
         <div class="section-footer">

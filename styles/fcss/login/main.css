@@ -141,6 +141,12 @@ iframe {
   position: relative;
 }
 
+@media (min-width: 767px) {
+  .contact2-form.new-order {
+    width: 45%;
+  }
+}
+
 .contact2-form-title {
   display: block;
   font-size: 39px;

@@ -3,7 +3,6 @@
 */
 
 #viewPage {
-  overflow-x: auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -56,7 +55,6 @@
 }
 
 .row {
-  display: table-row;
   background: #fff;
 }
 
@@ -136,19 +134,14 @@
   width: 100% !important;
 }
 
-.row:hover {
-  background-color: #ececff;
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
-  .row {
+  /*.row {
     border-bottom: 1px solid #f2f2f2;
     padding-bottom: 18px;
     padding-top: 30px;
     padding-right: 15px;
     margin: 0;
-  }
+  }*/
   
   .row .cell {
     border: none;
@@ -171,4 +164,8 @@
   .table, .row, .cell {
     width: 100% !important;
   }
+}
+
+.orders-header {
+
 }

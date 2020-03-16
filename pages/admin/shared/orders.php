@@ -59,52 +59,60 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
         <div class="wrap-table100">
             <form class="contact2-form validate-form" method="post" id="uploadForm">
                 <div class="container">
-                    <div class="filterDayContent">
-					<?php
-					$i = 0;
-					$dateFromUnix = strtotime($_POST["orderfrom_datepicker"]);
-					$dateToUnix = strtotime($_POST["orderto_datepicker"]);
-					$dateRangeUnix = ($dateToUnix - $dateFromUnix) > 0 ? $dateToUnix - $dateFromUnix : 86400 * 7;
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="filterDayContent">
+                                <?php
+                                $i = 0;
+                                $dateFromUnix = strtotime($_POST["orderfrom_datepicker"]);
+                                $dateToUnix = strtotime($_POST["orderto_datepicker"]);
+                                $dateRangeUnix = ($dateToUnix - $dateFromUnix) > 0 ? $dateToUnix - $dateFromUnix : 86400 * 7;
 
-					foreach ($filterDayArr as $filterDay => $val)
-					{
-						$isActive = "onclick='$.coremanage.showOrders(". $i .")'";
-						
-						if ($dateRangeUnix == $val)
-							$isActive = "class='active'";
-                        
-						echo "<span ". $isActive .">". $filterDay ."</span>";
-						
-						$i++;
-					}
-					?>
-                    </div>
-                    <div class='col-md-3'>
-                        <div class="form-group">
-                            <div class='input-group date' id='orderfrom_datepicker'>
-                                <input type='text' class="form-control" name="orderfrom_datepicker" value="<?php echo $dateFrom; ?>"/>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                foreach ($filterDayArr as $filterDay => $val)
+                                {
+                                    $isActive = "onclick='$.coremanage.showOrders(". $i .")'";
+
+                                    if ($dateRangeUnix == $val)
+                                        $isActive = "class='active'";
+
+                                    echo "<span ". $isActive .">". $filterDay ."</span>";
+
+                                    $i++;
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
-                    <div class='col-md-3'>
-                        <div class="form-group">
-                            <div class='input-group date' id='orderto_datepicker'>
-                                <input type='text' class="form-control" name="orderto_datepicker" value="<?php echo $dateTo; ?>"/>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <div class="row orders-header">
+                        <div class='col-md-2'>
+                            <div class="form-group">
+                                <div class='input-group date' id='orderfrom_datepicker'>
+                                    <input type='text' class="form-control" name="orderfrom_datepicker" value="<?php echo $dateFrom; ?>"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button id="showOrder" data-toggle="tooltip" title="Применить фильтр" type="submit" class="btn btn-success btn-md"><span class="glyphicon glyphicon-ok"></span></button>
-                    <button data-toggle="tooltip" title="Сбросить фильтр" type="button" class="btn btn-danger btn-md" onclick="$.coremanage.clearFilter(); $('#showOrder').trigger('click');"><span class="glyphicon glyphicon-remove"></span></button>
-                    <div class='col-md-5' style="text-align: right">
-                        <div class="form-group">
-                            <?php
-                            if (count($orderArray) > 0)
-                                echo "<span class='text'>" . $stringHandler->numberof(count($orderArray), 'Выбран', array('', 'о', 'о')) . ' '
-                                    . count($orderArray) . ' ' . $stringHandler->numberof(count($orderArray), 'заказ')
-                                    . ' на сумму ' . number_format($allAmount, 0, '.', ' ') . ' руб.' . "</span>";
-                            ?>
+                        <div class='col-md-2'>
+                            <div class="form-group">
+                                <div class='input-group date' id='orderto_datepicker'>
+                                    <input type='text' class="form-control" name="orderto_datepicker" value="<?php echo $dateTo; ?>"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="showOrder" data-toggle="tooltip" title="Применить фильтр" type="submit" class="btn btn-success btn-md"><span class="glyphicon glyphicon-ok"></span></button>
+                            <button data-toggle="tooltip" title="Сбросить фильтр" type="button" class="btn btn-danger btn-md" onclick="$.coremanage.clearFilter(); $('#showOrder').trigger('click');"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                        <div class='col-md-6' style="text-align: right">
+                            <div class="form-group">
+                                <?php
+                                if (count($orderArray) > 0)
+                                    echo "<span class='text'>" . $stringHandler->numberof(count($orderArray), 'Выбран', array('', 'о', 'о')) . ' '
+                                        . count($orderArray) . ' ' . $stringHandler->numberof(count($orderArray), 'заказ')
+                                        . ' на сумму ' . number_format($allAmount, 0, '.', ' ') . ' руб.' . "</span>";
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>

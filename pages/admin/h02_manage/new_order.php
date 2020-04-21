@@ -8,7 +8,7 @@ if ($httpHandler->GetAccessLevel() <= 0) {
 
 ?>
 
-<form class="contact2-form new-order" method="post" id="uploadForm">
+<form class="contact2-form view-order" method="post" id="uploadForm">
     <fieldset>
         <div class="section"><span>1</span>Информация о заказе</div>
         <div class="wrap-input2 validate-input row" style="border-bottom: 0; min-height: 227px;">
@@ -89,9 +89,9 @@ if ($httpHandler->GetAccessLevel() <= 0) {
             </div>
         </div>
         <div class="section-footer">
-            <button type="button" name="next" top="-205px" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.createOrder()">Добавить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="next" top="-205px" class="btn btn-primary" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.createOrder()">Добавить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 
@@ -151,10 +151,10 @@ if ($httpHandler->GetAccessLevel() <= 0) {
         </div>
 
         <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" name="next" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.createOrder()">Добавить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+            <button type="button" name="next" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.createOrder()">Добавить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 
@@ -206,9 +206,9 @@ if ($httpHandler->GetAccessLevel() <= 0) {
         </div>
 
         <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.createOrder()">Добавить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.createOrder()">Добавить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 </form>

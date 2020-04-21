@@ -186,8 +186,8 @@ form div.section {
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-left: -50px;
-    width: 114.8%;
+    margin-left: -2.5em;
+    margin-right: -2.5em;
 }
 
 form div.section span {

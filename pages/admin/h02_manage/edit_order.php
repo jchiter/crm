@@ -10,7 +10,7 @@ $itemOrder = $db->fetch_array();
 $_SESSION[ITEM_ID] = intval($_GET['valid']);
 ?>
 
-<form class="contact2-form" method="post" id="uploadForm" style="width: 800px;">
+<form class="contact2-form view-order" method="post" id="uploadForm">
     <fieldset>
         <div class="section"><span>1</span>Информация о заказе</div>
         <div class="wrap-input2 validate-input" style="border-bottom: 0; min-height: 227px;">
@@ -97,9 +97,9 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
             </div>
         </div>
         <div class="section-footer">
-            <button type="button" name="next" top="-205px" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="next" top="-205px" class="btn btn-primary" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 
@@ -107,7 +107,7 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
         <div class="section"><span>2</span>Информация о заказчике</div>
         <div class="row">
             <div class="col-md-6">
-                <div class="wrap-input2 validate-input" style="border-bottom: 0; width: 50%; display: inline-table;">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
                     <select name="<?php echo CaptionField::$inputSex; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputSex; ?>" data-width="100%" onchange="$(function() {
                             $('.selectpicker#<?php echo captionfield::$inputName; ?>').removeAttr('disabled');
                             $('.selectpicker#<?php echo captionfield::$inputName; ?>').selectpicker('refresh');
@@ -125,7 +125,7 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
             </div>
 
             <div class="col-md-6">
-                <div class="wrap-input2 validate-input" style="border-bottom: 0; width: 49.4%; display: inline-table;">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
                     <select name="<?php echo CaptionField::$inputName; ?>" class="selectpicker show-tick" id="<?php echo CaptionField::$inputName; ?>" data-live-search="true" data-showremove="true" data-showedit="true" data-width="100%" data-size="10">
                         <option data-hidden="true">Выберите имя...</option>
                         <?php
@@ -163,10 +163,10 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
         </div>
 
         <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" name="next" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+            <button type="button" name="next" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 
@@ -220,9 +220,9 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
         </div>
 
         <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary btn-lg" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" class="btn btn-success btn-lg" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger btn-lg" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
         </div>
     </fieldset>
 </form>

@@ -142,7 +142,7 @@ iframe {
 }
 
 @media (min-width: 767px) {
-  .contact2-form.new-order {
+  .contact2-form.view-order {
     width: 35%;
   }
 }

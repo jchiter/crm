@@ -14,8 +14,8 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
     <fieldset>
         <div class="section"><span>1</span>Информация о заказе</div>
         <div class="wrap-input2 validate-input" style="border-bottom: 0; min-height: 227px;">
-            <div id="orderdatepicker"><input type='hidden' name="<?php echo CaptionField::$inputDate; ?>" value="<?php echo $itemOrder[OrderTableStruct::$columnDate]; ?>" class="form-control"/></div>
-            <div id="ordertimepicker"><input type='hidden' name="<?php echo CaptionField::$inputTime; ?>" value="<?php echo $itemOrder[OrderTableStruct::$columnTime]; ?>" class="form-control"/></div>
+            <div class="col-md-6" id="orderdatepicker"><input type='hidden' name="<?php echo CaptionField::$inputDate; ?>" value="<?php echo $itemOrder[OrderTableStruct::$columnDate]; ?>" class="form-control"/></div>
+            <div class="col-md-6" id="ordertimepicker"><input type='hidden' name="<?php echo CaptionField::$inputTime; ?>" value="<?php echo $itemOrder[OrderTableStruct::$columnTime]; ?>" class="form-control"/></div>
         </div>
         <br>
 		<br>

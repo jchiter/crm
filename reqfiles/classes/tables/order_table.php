@@ -41,7 +41,6 @@ class OrderTable
         
         $format = 'SELECT * FROM %1$s %2$s';
         $queryText = sprintf($format, $this->currentTable, $isWhere);
-
         return $db->query($queryText);
     }
 

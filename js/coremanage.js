@@ -10,7 +10,8 @@ allEvents = new Array(
     "LIST_EDIT",
     "PROFILE_EDIT",
     "GET_LIST",
-    "SHOW_MODULE"
+    "SHOW_MODULE",
+    "SHOW_STATISTIC"
 );
 
 var debugInfo = true;
@@ -560,41 +561,79 @@ $.messageLevelTitle =
 					title: "Просмотр адреса: " + addr,
 					message: "<div style='width: 868px; height:500px;' id='yandex_map'></div>",
 					onshow: function () {
-                                setTimeout(function () {
-                                    var myMap = new ymaps.Map ("yandex_map", {
-										center: [53.195063, 45.018316], 
-										zoom: 13
-									});
-									
-									ymaps.ready(function()
-									{
-										var myGeocoder = ymaps.geocode("Пенза, " + addr);
-										myGeocoder.then(
-											function (res)
-											{
-												var firstGeoObject = res.geoObjects.get(0),
-													// Координаты геообъекта.
-													coords = firstGeoObject.geometry.getCoordinates(),
-													// Область видимости геообъекта.
-													bounds = firstGeoObject.properties.get('boundedBy');
+                        setTimeout(function () {
+                            var myMap = new ymaps.Map ("yandex_map", {
+                                center: [53.195063, 45.018316],
+                                zoom: 13
+                            });
 
-												// Добавляем первый найденный геообъект на карту.
-												myMap.geoObjects.add(firstGeoObject);
-												// Масштабируем карту на область видимости геообъекта.
-												myMap.setBounds(bounds, {
-													// Проверяем наличие тайлов на данном масштабе.
-													checkZoomRange: true
-												});
-											},
-											function (err) {
-												console.log(err);
-											}
-										);
-									});
-                                }, 200);
-                                showAlways = true;
-                            }
-					});
+                            ymaps.ready(function()
+                            {
+                                var myGeocoder = ymaps.geocode("Пенза, " + addr);
+                                myGeocoder.then(
+                                    function (res)
+                                    {
+                                        var firstGeoObject = res.geoObjects.get(0),
+                                            // Координаты геообъекта.
+                                            coords = firstGeoObject.geometry.getCoordinates(),
+                                            // Область видимости геообъекта.
+                                            bounds = firstGeoObject.properties.get('boundedBy');
+
+                                        // Добавляем первый найденный геообъект на карту.
+                                        myMap.geoObjects.add(firstGeoObject);
+                                        // Масштабируем карту на область видимости геообъекта.
+                                        myMap.setBounds(bounds, {
+                                            // Проверяем наличие тайлов на данном масштабе.
+                                            checkZoomRange: true
+                                        });
+                                    },
+                                    function (err) {
+                                        console.log(err);
+                                    }
+                                );
+                            });
+                        }, 200);
+                        showAlways = true;
+                    }
+                });
+            },
+
+            showStatistic: function() {
+                optionsQuery.success = function (receive) {
+                    //WriteMessageDebug(receive);
+
+                    var receiveArray = JSON.parse(receive);
+                    //console.log(receiveArray);
+                    $("#myChart").remove();
+
+                    $(".wrap-table100").append('<canvas id="myChart"></canvas>');
+                    var ctx = document.getElementById("myChart");
+                    if (ctx != undefined) {
+                        ctx.getContext('2d').clearRect(0, 0, $("#myChart").width(), $("#myChart").height());
+                        var chart = new Chart(ctx.getContext('2d'), {
+                            // The type of chart we want to create
+                            type: 'bar',
+
+                            // The data for our dataset
+                            data: {
+                                labels: receiveArray.date,
+                                datasets: [{
+                                    label: "",
+                                    backgroundColor: 'white',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: receiveArray.amount
+                                }]
+                            },
+
+                            // Configuration options go here
+                            options: {}
+                        });
+                    }
+
+                    $(".summary .form-group").html(receiveArray.summary);
+                };
+
+                $("#uploadForm").ajaxSubmit(optionsQuery, true, $.coremanage.GetEventId("SHOW_STATISTIC"));
             }
         };
     })();

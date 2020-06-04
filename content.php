@@ -47,6 +47,10 @@ if (strcmp($httpHandler->GetPageName(), "main") != 0) {
                             echo "<li class=\"nav-item " . $httpHandler->GetClass('history') . "\">";
                             echo "<a class=\"nav-link\" href=\"?p=history\"><i class=\"fa fa-history\"></i>история</a>";
                             echo "</li>";
+
+                            echo "<li class=\"nav-item " . $httpHandler->GetClass('statistics') . "\">";
+                            echo "<a class=\"nav-link\" href=\"?p=statistics\"><i class=\"fa fa-area-chart\"></i>статистика выручки</a>";
+                            echo "</li>";
                         } ?>
                     </ul>
 
@@ -104,6 +108,7 @@ if (strcmp($httpHandler->GetPageName(), "main") != 0) {
 <script src="js/coreui.js?nocache=<?php echo rand(); ?>"></script>
 <script src="js/coremanage.js?nocache=<?php echo rand(); ?>"></script>
 <script src="https://api-maps.yandex.ru/2.1.60/?lang=ru_RU" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <!--<script src="js/bootstrap/bootstrap-table.min.js?nocache=<?php echo rand(); ?>"></script>
 <script src="js/bootstrap/bootstrap-table-ru-RU.min.js?nocache=<?php echo rand(); ?>">-->
 </body>

@@ -42,64 +42,85 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
             </div>
         </div>
 
-        <div class="wrap-input2 validate-input" style="border-bottom: 0;">
-            <select name="<?php echo CaptionField::$inputPrepayType; ?>" class="selectpicker show-tick" data-showinsert="true" data-showremove="true" data-showedit="true" data-width="100%">
-                <option data-hidden="true">Выберите источник предоплаты...</option>
-                <?php
-                $resultPrepay = $prepayTable->Select();
-                while ($item = $db->fetch_array($resultPrepay)) {
-                    $isSelected = intval($item[PrepayTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Prepay]) ? "selected" : "";
-                    echo "<option " . $isSelected . " value=\"" . $item[PrepayTableStruct::$columnID] . "\">" . $item[PrepayTableStruct::$columnValue] . "</option>";
-                }
-                ?>
-            </select>
-        </div>
-
-        <div class="wrap-input2 validate-input" style="border-bottom: 0;">
-            <select name="<?php echo CaptionField::$inputSalesType; ?>" class="selectpicker show-tick" data-showremove="true" data-showedit="true" data-width="100%">
-                <option data-hidden="true">Выберите канал продаж...</option>
-                <?php
-                $resultSales = $salesTable->Select();
-                while ($item = $db->fetch_array($resultSales)) {
-                    $isSelected = intval($item[SalesTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Sales]) ? "selected" : "";
-                    echo "<option " . $isSelected . " value=\"" . $item[SalesTableStruct::$columnID] . "\">" . $item[SalesTableStruct::$columnValue] . "</option>";
-                }
-                ?>
-            </select>
-        </div>
-
-        <div class="wrap-input2 validate-input" style="border-bottom: 0;">
-            <select name="<?php echo CaptionField::$inputEvent; ?>" class="selectpicker show-tick" data-showremove="true" data-showedit="true" data-width="100%">
-                <option data-hidden="true">Выберите событие...</option>
-                <?php
-                $resultEvent = $eventTable->Select();
-                while ($item = $db->fetch_array($resultEvent)) {
-                    $isSelected = intval($item[EventTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Event]) ? "selected" : "";
-                    echo "<option " . $isSelected . " value=\"" . $item[EventTableStruct::$columnID] . "\">" . $item[EventTableStruct::$columnName] . "</option>";
-                }
-                ?>
-            </select>
-        </div>
-
-        <div class="wrap-input2 validate-input" style="border-bottom: 0;">
-            <textarea name="<?php echo CaptionField::$inputDesc; ?>"><?php echo $itemOrder[OrderTableStruct::$columnDesc]; ?></textarea>
-            <div class="keywordContent">
-                <div class="keywordInsert">
-                    <input name="<?php echo CaptionField::$inputKeyword; ?>" onKeyPress="if (event.which == 13) $(this).next().click()" class="form-control keywordText"/>
-                    <button type="button" class="btn btn-default btn-md" onclick="addKeywordItem(this)"><span class="glyphicon glyphicon-ok"></span></button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputPrepayType; ?>" class="selectpicker show-tick" data-showinsert="true" data-showremove="true" data-showedit="true" data-width="100%">
+                        <option data-hidden="true">Выберите источник предоплаты...</option>
+                        <?php
+                        $resultPrepay = $prepayTable->Select();
+                        while ($item = $db->fetch_array($resultPrepay)) {
+                            $isSelected = intval($item[PrepayTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Prepay]) ? "selected" : "";
+                            echo "<option " . $isSelected . " value=\"" . $item[PrepayTableStruct::$columnID] . "\">" . $item[PrepayTableStruct::$columnValue] . "</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
-                <span class="keywordBtn">добавить</span>
-                <?php
-                $resultKeyword = $keywordTable->Select();
-                while ($item = $db->fetch_array($resultKeyword))
-                    echo "<span class=\"keywordValue\">" . $item[KeywordTableStruct::$columnValue] . "</span><sup name=\"" . CaptionField::$inputKeyword . "\" id=\"" . $item[KeywordTableStruct::$columnID] . "\">X</sup>";
-                ?>
             </div>
         </div>
-        <div class="section-footer">
-            <button type="button" name="next" top="-205px" class="btn btn-primary" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputSalesType; ?>" class="selectpicker show-tick" data-showremove="true" data-showedit="true" data-width="100%">
+                        <option data-hidden="true">Выберите канал продаж...</option>
+                        <?php
+                        $resultSales = $salesTable->Select();
+                        while ($item = $db->fetch_array($resultSales)) {
+                            $isSelected = intval($item[SalesTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Sales]) ? "selected" : "";
+                            echo "<option " . $isSelected . " value=\"" . $item[SalesTableStruct::$columnID] . "\">" . $item[SalesTableStruct::$columnValue] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <select name="<?php echo CaptionField::$inputEvent; ?>" class="selectpicker show-tick" data-showremove="true" data-showedit="true" data-width="100%">
+                        <option data-hidden="true">Выберите событие...</option>
+                        <?php
+                        $resultEvent = $eventTable->Select();
+                        while ($item = $db->fetch_array($resultEvent)) {
+                            $isSelected = intval($item[EventTableStruct::$columnID]) == intval($itemOrder[OrderTableStruct::$columnID_Event]) ? "selected" : "";
+                            echo "<option " . $isSelected . " value=\"" . $item[EventTableStruct::$columnID] . "\">" . $item[EventTableStruct::$columnName] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-input2 validate-input" style="border-bottom: 0;">
+                    <textarea name="<?php echo CaptionField::$inputDesc; ?>"><?php echo $itemOrder[OrderTableStruct::$columnDesc]; ?></textarea>
+                    <div class="keywordContent">
+                        <div class="keywordInsert">
+                            <input name="<?php echo CaptionField::$inputKeyword; ?>" onKeyPress="if (event.which == 13) $(this).next().click()" class="form-control keywordText"/>
+                            <button type="button" class="btn btn-default btn-md" onclick="addKeywordItem(this)"><span class="glyphicon glyphicon-ok"></span></button>
+                        </div>
+                        <span class="keywordBtn">добавить</span>
+                        <?php
+                        $resultKeyword = $keywordTable->Select();
+                        while ($item = $db->fetch_array($resultKeyword))
+                            echo "<span class=\"keywordValue\">" . $item[KeywordTableStruct::$columnValue] . "</span><sup name=\"" . CaptionField::$inputKeyword . "\" id=\"" . $item[KeywordTableStruct::$columnID] . "\">X</sup>";
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-footer">
+                    <button type="button" name="next" top="-205px" class="btn btn-primary" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Далее&nbsp;&gt;</button>
+                    <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+                    <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+                </div>
+            </div>
         </div>
     </fieldset>
 
@@ -162,11 +183,15 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
             </div>
         </div>
 
-        <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" name="next" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
-            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-footer">
+                    <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section1').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+                    <button type="button" name="next" class="btn btn-primary" onclick="$(function() { $('.section-content#section2').fadeOut(); $('.section-content#section3').fadeIn('fast', function() { $(this).removeClass('hide') }); } )">Далее&nbsp;&gt;</button>
+                    <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+                    <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+                </div>
+            </div>
         </div>
     </fieldset>
 
@@ -219,10 +244,14 @@ $_SESSION[ITEM_ID] = intval($_GET['valid']);
             </div>
         </div>
 
-        <div class="section-footer">
-            <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
-            <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
-            <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row section-footer">
+                    <button type="button" name="previous" class="btn btn-primary" onclick="$(function() { $('.section-content#section3').fadeOut(); $('.section-content#section2').fadeIn('fast') } )">&lt;&nbsp;Назад</button>
+                    <button type="button" class="btn btn-success" onclick="$.coremanage.editOrder()">Сохранить</button>
+                    <button type="button" name="cancel" top="-205px" class="btn btn-danger" onclick="$(function() { $('.section-content#section1').fadeOut(); $('.section-content#section2').removeClass('hide')} )">Отмена</button>
+                </div>
+            </div>
         </div>
     </fieldset>
 </form>

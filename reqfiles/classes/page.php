@@ -16,7 +16,8 @@ class Page
     var $pages_admin_shared = array(
         "orders",
         "history",
-        "view_order"
+        "view_order",
+        "statistics"
     );
 
     var $pages_admin_view = array();

@@ -361,6 +361,39 @@ class h02Handler extends LoginHandler
             return true;
         }
     }
+
+    function ShowStatistic() {
+        global $db, $orderTable, $stringHandler;
+        $dateFrom = strlen($_POST['orderfrom_datepicker']) > 0 ? $_POST['orderfrom_datepicker'] : date("d.m.Y", time());
+        $dateTo = strlen($_POST['orderto_datepicker']) > 0 ? $_POST['orderto_datepicker'] : date("d.m.Y", time() + 604800);
+
+        $dateArrayFrom = explode('.', $dateFrom);
+        $dateCreateFrom = $dateArrayFrom[2] . "-" . $dateArrayFrom[1] . "-" . $dateArrayFrom[0];
+        $dateArrayTo = explode('.', $dateTo);
+        $dateCreateTo = $dateArrayTo[2] . "-" . $dateArrayTo[1]. "-" . $dateArrayTo[0];
+
+        $whereText = "`" . OrderTableStruct::$columnDate . "` BETWEEN '" . $dateCreateFrom . "' AND '" . $dateCreateTo . "' ORDER BY `" . OrderTableStruct::$columnDate . "`, `" . OrderTableStruct::$columnTime . "` ASC";
+        $orderArray = [];
+        $orderArray["date"] = [];
+        $orderArray["amount"] = [];
+        $resultAmount = 0;
+        $resultCount = 0;
+        $resultOrders = $orderTable->Select($whereText);
+        while ($item = $db->fetch_array($resultOrders)) {
+            $keyDate = date("m.Y", strtotime($item[OrderTableStruct::$columnDate]));
+            if (!in_array($keyDate, $orderArray["date"])) {
+                $orderArray["date"][] = $keyDate;
+            }
+
+            $orderArray["amount"][count($orderArray["date"]) - 1] += $item[OrderTableStruct::$columnAmount];
+            $resultAmount += $item[OrderTableStruct::$columnAmount];
+            $resultCount++;
+        }
+
+        $orderArray["summary"] = sprintf("%s %d %s на сумму %s руб.", $stringHandler->numberof($resultCount, 'Выбран', array('', 'о', 'о')), $resultCount, $stringHandler->numberof($resultCount, 'заказ'), number_format($resultAmount, 0, '.', ' '));
+
+        print_r(json_encode($orderArray));
+    }
 }
 
 ?>

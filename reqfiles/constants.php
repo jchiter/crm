@@ -61,7 +61,8 @@ $allEvents = array(
     "LIST_EDIT",
     "PROFILE_EDIT",
     "GET_LIST",
-    "SHOW_MODULE"
+    "SHOW_MODULE",
+    "SHOW_STATISTIC"
 );
 
 class CaptionField

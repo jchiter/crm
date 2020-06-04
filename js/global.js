@@ -235,14 +235,5 @@ $(function()
         $("button[name=cancel]").click(function(){
             window.history.back();
         });
-
-        $(".grid-item").on("click", function()
-        {
-            if ($(this).attr("id") == "login")
-            {
-                //$.coreui.showDialog("bla", $.messageLevels.DBERROR, 0);
-
-            }
-        });
     });
 });

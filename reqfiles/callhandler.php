@@ -27,7 +27,7 @@ $sharedLoginArray = array(
 
 $sharedAdminArray = array();
 
-$h02Array = array(
+$h02Array = [
     "CREATE_ORDER" => "CreateOrder",
     "EDIT_ORDER" => "EditOrder",
     "SAVE_ORDER" => "SaveOrder",
@@ -35,7 +35,9 @@ $h02Array = array(
     "LIST_ADD" => "ListAdd",
     "LIST_REMOVE" => "ListRemove",
     "LIST_EDIT" => "ListEdit",
-    "GET_LIST" => "GetList");
+    "GET_LIST" => "GetList",
+    "SHOW_STATISTIC" => "ShowStatistic"
+];
 
 $h01Array = array();
 

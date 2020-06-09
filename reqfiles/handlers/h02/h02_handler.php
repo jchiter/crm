@@ -380,7 +380,12 @@ class h02Handler extends LoginHandler
         $resultCount = 0;
         $resultOrders = $orderTable->Select($whereText);
         while ($item = $db->fetch_array($resultOrders)) {
-            $keyDate = date("m.Y", strtotime($item[OrderTableStruct::$columnDate]));
+            if ($_POST["range-type"] == "m") {
+                $keyDate = date("m.Y", strtotime($item[OrderTableStruct::$columnDate]));
+            } else {
+                $keyDate = date("d.m.Y", strtotime($item[OrderTableStruct::$columnDate]));
+            }
+
             if (!in_array($keyDate, $orderArray["date"])) {
                 $orderArray["date"][] = $keyDate;
             }
@@ -392,7 +397,7 @@ class h02Handler extends LoginHandler
 
         $orderArray["summary"] = sprintf("%s %d %s на сумму %s руб.", $stringHandler->numberof($resultCount, 'Выбран', array('', 'о', 'о')), $resultCount, $stringHandler->numberof($resultCount, 'заказ'), number_format($resultAmount, 0, '.', ' '));
 
-        print_r(json_encode($orderArray));
+        echo json_encode($orderArray);
     }
 }
 

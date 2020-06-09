@@ -1,4 +1,4 @@
-allEvents = new Array(
+allEvents = [
     "SYSTEM_ENTER",
     "SYSTEM_EXIT",
     "CREATE_ORDER",
@@ -12,7 +12,7 @@ allEvents = new Array(
     "GET_LIST",
     "SHOW_MODULE",
     "SHOW_STATISTIC"
-);
+];
 
 var debugInfo = true;
 
@@ -214,7 +214,7 @@ $.messageLevelTitle =
                 $.confirm(optionsConfirm);
             },
 
-            showOrders: function (type) {
+            setDayRange: function(type) {
                 var valToDate = 0;
                 var currentDate = new Date();
                 var currentMonth = parseInt(currentDate.getMonth() + 1) < 10 ? "0" + (currentDate.getMonth() + 1) : currentDate.getMonth() + 1;
@@ -263,7 +263,9 @@ $.messageLevelTitle =
 
                 $("input[name=orderfrom_datepicker]").val(curDateStr);
                 $("input[name=orderto_datepicker]").val(sevenDateStr);
+            },
 
+            showOrders: function (type) {
                 $("#uploadForm").ajaxSubmit(optionsQuery, true, $.coremanage.GetEventId("SHOW_ORDERS"));
                 $('#showOrder').trigger('click');
             },
@@ -598,35 +600,68 @@ $.messageLevelTitle =
                 });
             },
 
-            showStatistic: function() {
+            showStatistic: function () {
                 optionsQuery.success = function (receive) {
-                    //WriteMessageDebug(receive);
+                    WriteMessageDebug(receive);
 
                     var receiveArray = JSON.parse(receive);
-                    //console.log(receiveArray);
+                    console.log(receiveArray);
                     $("#myChart").remove();
 
                     $(".wrap-table100").append('<canvas id="myChart"></canvas>');
                     var ctx = document.getElementById("myChart");
                     if (ctx != undefined) {
+                        /*Chart.pluginService.register({
+                            beforeDraw: function (chart, easing) {
+                                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                                    var ctx = chart.chart.ctx;
+                                    var chartArea = chart.chartArea;
+
+                                    ctx.save();
+                                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                                    ctx.restore();
+                                }
+                            }
+                        });*/
                         ctx.getContext('2d').clearRect(0, 0, $("#myChart").width(), $("#myChart").height());
                         var chart = new Chart(ctx.getContext('2d'), {
-                            // The type of chart we want to create
-                            type: 'bar',
+                            type: 'line',
 
-                            // The data for our dataset
                             data: {
                                 labels: receiveArray.date,
                                 datasets: [{
                                     label: "",
-                                    backgroundColor: 'white',
-                                    borderColor: 'rgb(255, 99, 132)',
+                                    //backgroundColor: 'white',
+                                    borderColor: '#248ee6',
+                                    fill: false,
                                     data: receiveArray.amount
                                 }]
                             },
-
-                            // Configuration options go here
-                            options: {}
+                            options: {
+                                title: {
+                                    display: false
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        gridLines: {
+                                            display: true,
+                                            drawBorder: true,
+                                            drawOnChartArea: false
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        gridLines: {
+                                            display: true,
+                                            drawBorder: true,
+                                            drawOnChartArea: false,
+                                        }
+                                    }]
+                                },
+                                chartArea: {
+                                    backgroundColor: '#fff'
+                                }
+                            },
                         });
                     }
 

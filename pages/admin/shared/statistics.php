@@ -34,22 +34,21 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
                         <div class="col-md-12">
                             <div class="filterDayContent">
                                 <?php
-                                /*$i = 0;
+                                $i = 0;
                                 $dateFromUnix = strtotime($_POST["orderfrom_datepicker"]);
                                 $dateToUnix = strtotime($_POST["orderto_datepicker"]);
                                 $dateRangeUnix = ($dateToUnix - $dateFromUnix) > 0 ? $dateToUnix - $dateFromUnix : 86400 * 7;
 
-                                foreach ($filterDayArr as $filterDay => $val)
-                                {
-                                    $isActive = "onclick='$.coremanage.showOrders(". $i .")'";
+                                foreach ($filterDayArr as $filterDay => $val) {
+                                    $isActive = "onclick='$.coremanage.showStatistic(". $i .")'";
 
                                     if ($dateRangeUnix == $val)
                                         $isActive = "class='active'";
 
-                                    echo "<span ". $isActive .">". $filterDay ."</span>";
+                                    //echo "<span ". $isActive .">". $filterDay ."</span>";
 
                                     $i++;
-                                }*/
+                                }
                                 ?>
                             </div>
                         </div>
@@ -69,6 +68,14 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
                                     <input type='text' class="form-control" name="orderto_datepicker" value="<?php echo $dateTo; ?>"/>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class='col-md-2'>
+                            <div class="form-group">
+                                <select class="form-control" id="range-type" name="range-type">
+                                    <option value="d">дни</option>
+                                    <option value="m">месяца</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-2">

@@ -29,30 +29,7 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
     <div class="container-table100">
         <div class="wrap-table100">
             <form class="contact2-form validate-form" method="post" id="uploadForm">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="filterDayContent">
-                                <?php
-                                $i = 0;
-                                $dateFromUnix = strtotime($_POST["orderfrom_datepicker"]);
-                                $dateToUnix = strtotime($_POST["orderto_datepicker"]);
-                                $dateRangeUnix = ($dateToUnix - $dateFromUnix) > 0 ? $dateToUnix - $dateFromUnix : 86400 * 7;
-
-                                foreach ($filterDayArr as $filterDay => $val) {
-                                    $isActive = "onclick='$.coremanage.showStatistic(". $i .")'";
-
-                                    if ($dateRangeUnix == $val)
-                                        $isActive = "class='active'";
-
-                                    //echo "<span ". $isActive .">". $filterDay ."</span>";
-
-                                    $i++;
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container">Выберите даты для фильтрации статистики выручки<br><br>
                     <div class="row orders-header">
                         <div class='col-md-2'>
                             <div class="form-group">

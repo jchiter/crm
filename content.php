@@ -48,8 +48,16 @@ if (strcmp($httpHandler->GetPageName(), "main") != 0) {
                             echo "<a class=\"nav-link\" href=\"?p=history\"><i class=\"fa fa-history\"></i>история</a>";
                             echo "</li>";
 
-                            echo "<li class=\"nav-item " . $httpHandler->GetClass('statistics') . "\">";
-                            echo "<a class=\"nav-link\" href=\"?p=statistics\"><i class=\"fa fa-area-chart\"></i>статистика выручки</a>";
+                            //echo "<li class=\"nav-item " . $httpHandler->GetClass('statistics') . "\">";
+                            //echo "<a class=\"nav-link\" href=\"?p=statistics\"><i class=\"fa fa-area-chart\"></i>статистика выручки</a>";
+                            //echo "</li>";
+
+                            echo "<li class=\"dropdown nav-item " . $httpHandler->GetClass('statistics') . "\">";
+                            echo "<a class=\"dropdown-toggle nav-link\" data-toggle=\"dropdown\" href=\"#\"><i class=\"fa fa-area-chart\"></i>&nbsp;статистика<span class=\"caret\"></span></a>";
+                            echo "<ul class=\"dropdown-menu\">";
+                            echo "<li><a class=\"nav-link\" href=\"?p=statistics-pay\">выручки</a></li>";
+                            echo "<li><a class=\"nav-link\" href=\"?p=statistics-sale\">каналов продаж</a></li>";
+                            echo "</ul>";
                             echo "</li>";
                         } ?>
                     </ul>

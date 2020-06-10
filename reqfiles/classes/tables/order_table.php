@@ -44,6 +44,13 @@ class OrderTable
         return $db->query($queryText);
     }
 
+    public function CustomSelect($queryText)
+    {
+        global $db;
+
+        return $db->query($queryText);
+    }
+
     public function Insert()
     {
         global $db, $userHandler;

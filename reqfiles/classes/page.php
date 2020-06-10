@@ -17,7 +17,8 @@ class Page
         "orders",
         "history",
         "view_order",
-        "statistics"
+        "statistics-pay",
+        "statistics-sale"
     );
 
     var $pages_admin_view = array();

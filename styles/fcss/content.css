@@ -637,7 +637,7 @@ table.table-condensed tr td.separator {
 
 #myChart {
     background-color: #fff;
-    width: 0;
+    width: 100%;
     margin-top: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

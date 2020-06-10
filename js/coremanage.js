@@ -11,7 +11,8 @@ allEvents = [
     "PROFILE_EDIT",
     "GET_LIST",
     "SHOW_MODULE",
-    "SHOW_STATISTIC"
+    "SHOW_STATISTIC",
+    "SHOW_STATISTIC_SALE"
 ];
 
 var debugInfo = true;
@@ -600,7 +601,7 @@ $.messageLevelTitle =
                 });
             },
 
-            showStatistic: function () {
+            showStatistic: function (isSale) {
                 optionsQuery.success = function (receive) {
                     WriteMessageDebug(receive);
 
@@ -611,64 +612,77 @@ $.messageLevelTitle =
                     $(".wrap-table100").append('<canvas id="myChart"></canvas>');
                     var ctx = document.getElementById("myChart");
                     if (ctx != undefined) {
-                        /*Chart.pluginService.register({
-                            beforeDraw: function (chart, easing) {
-                                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
-                                    var ctx = chart.chart.ctx;
-                                    var chartArea = chart.chartArea;
-
-                                    ctx.save();
-                                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
-                                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-                                    ctx.restore();
-                                }
-                            }
-                        });*/
                         ctx.getContext('2d').clearRect(0, 0, $("#myChart").width(), $("#myChart").height());
-                        var chart = new Chart(ctx.getContext('2d'), {
-                            type: 'line',
+                        var dataArr = {
+                            labels: receiveArray.date,
+                            datasets: [{
+                                label: "",
+                                borderColor: '#248ee6',
+                                fill: false,
+                                data: receiveArray.amount
+                            }]
+                        };
 
-                            data: {
-                                labels: receiveArray.date,
-                                datasets: [{
-                                    label: "",
-                                    //backgroundColor: 'white',
-                                    borderColor: '#248ee6',
-                                    fill: false,
-                                    data: receiveArray.amount
+                        var optionsArr = {
+                            title: {
+                                display: false
+                            },
+                            scales: {
+                                xAxes: [{
+                                    gridLines: {
+                                        display: true,
+                                        drawBorder: true,
+                                        drawOnChartArea: false
+                                    }
+                                }],
+                                    yAxes: [{
+                                    gridLines: {
+                                        display: true,
+                                        drawBorder: true,
+                                        drawOnChartArea: false,
+                                    }
                                 }]
                             },
-                            options: {
-                                title: {
-                                    display: false
-                                },
-                                scales: {
-                                    xAxes: [{
-                                        gridLines: {
-                                            display: true,
-                                            drawBorder: true,
-                                            drawOnChartArea: false
-                                        }
-                                    }],
-                                    yAxes: [{
-                                        gridLines: {
-                                            display: true,
-                                            drawBorder: true,
-                                            drawOnChartArea: false,
-                                        }
-                                    }]
-                                },
-                                chartArea: {
-                                    backgroundColor: '#fff'
-                                }
-                            },
+                            chartArea: {
+                                backgroundColor: '#fff'
+                            }
+                        };
+
+                        if (isSale) {
+                            dataArr = {
+                                labels: receiveArray.saleName,
+                                datasets: [{
+                                    borderColor: '#248ee6',
+                                    backgroundColor: [
+                                        "white",
+                                        "silver",
+                                        "gray",
+                                        "red",
+                                        "orange",
+                                        "yellow",
+                                        "green",
+                                        "blue"
+                                    ],
+                                    data: receiveArray.saleCount
+                                }]
+                            };
+
+                            optionsArr = {
+
+                            };
+                        }
+                        console.log(isSale ? 'pie' : 'line');
+                        var chart = new Chart(ctx.getContext('2d'), {
+                            type: isSale ? 'pie' : 'line',
+                            data: dataArr,
+                            options: optionsArr
                         });
                     }
 
                     $(".summary .form-group").html(receiveArray.summary);
                 };
 
-                $("#uploadForm").ajaxSubmit(optionsQuery, true, $.coremanage.GetEventId("SHOW_STATISTIC"));
+                $("#uploadForm").ajaxSubmit(optionsQuery, true, isSale ? $.coremanage.GetEventId("SHOW_STATISTIC_SALE") : $.coremanage.GetEventId("SHOW_STATISTIC"));
             }
         };
     })();

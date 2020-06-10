@@ -36,7 +36,8 @@ $h02Array = [
     "LIST_REMOVE" => "ListRemove",
     "LIST_EDIT" => "ListEdit",
     "GET_LIST" => "GetList",
-    "SHOW_STATISTIC" => "ShowStatistic"
+    "SHOW_STATISTIC" => "ShowStatistic",
+    "SHOW_STATISTIC_SALE" => "ShowStatisticSale"
 ];
 
 $h01Array = array();

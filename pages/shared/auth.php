@@ -15,8 +15,8 @@ echo "<input class='form-control input-lg' placeholder='Пароль' type='pass
 echo "</div>";
 
 echo "<div class='section-footer'>";
-echo "<button type='button' class='btn btn-success btn-lg' onclick='$.coremanage.systemEnter()'>Вход</button>";
-echo "<button type='button' name='cancel' class='btn btn-danger btn-lg' onclick='$(function() { BootstrapDialog.closeAll(); })'>Отмена</button>";
+echo "<button type='button' class='btn btn-success' onclick='$.coremanage.systemEnter()'>Вход</button>";
+echo "<button type='button' class='btn btn-danger' onclick='$(function() { BootstrapDialog.closeAll(); })' name='cancel'>Отмена</button>";
 echo "</div>";
 echo "</form>";
 ?>

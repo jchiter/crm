@@ -76,12 +76,11 @@ $(function()
     $('.selectpicker[name=nameField]').prepend($('<option/>', {class: 'addItem'}).data('content', content)).selectpicker();
     $('.selectpicker[name=streetField]').prepend($('<option/>', {class: 'addItem'}).data('content', content)).selectpicker();
 
-    $(document).ready(function()
-    {
+    $(document).ready(function() {
         var datePickerMoment = new Date();
         var timePickerMoment = new Date();
 
-        $('[data-toggle="tooltip"]').tooltip();
+        //$('[data-toggle="tooltip"]').tooltip();
 
         $.coreui.editBoxFocus();
         $.coreui.editBoxBlur();
@@ -141,7 +140,7 @@ $(function()
             }
         });
 
-        $(".fancybox").fancybox({
+        /*$(".fancybox").fancybox({
             openEffect	: 'none',
             closeEffect	: 'none',
             arrows: false,
@@ -151,7 +150,7 @@ $(function()
                 title: {type: 'float'},
                 buttons: {}
             }
-        });
+        });*/
 
         $(".selectpicker#orderType").change(function()
         {
@@ -234,6 +233,61 @@ $(function()
 
         $("button[name=cancel]").click(function(){
             window.history.back();
+        });
+
+
+        $('.dataView').DataTable();
+        $('.streetView').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "deferRender": true,
+            "stateSave": true,
+            "ajax": "ajax/streets_processing.php",
+            "typeList": "streets",
+            createdRow: function( row, data, dataIndex ) {
+                $(row).find("select").selectpicker();
+            },
+            columns: [
+                {
+                    data: 'id'
+                },
+                {
+                    data: 'street',
+                    render: function (data, type, row) {
+                        var res = "<span list-id='" + data.id + "' class='text'>" + data.name + "</span><input class='form-control' style='display: none; width: 100%;' type='text'/>";
+                        return res;
+                    }
+                },
+                {
+                    "orderable": false,
+                    data: 'district',
+                    render: function(data, type, row) {
+                        var res = "<select class=\"selectpicker show-tick\" style='width: 100%' onchange=\"$.coremanage.listEdit($(this), 'streets')\"><option></option>";
+                        for (indexDist in data.all) {
+                            isActive = data.active == indexDist ? " selected=\"\" " : "";
+                            res += "<option" + isActive +" value='" + indexDist +"'>" + data.all[indexDist] + "</option>";
+                        }
+
+                        res += "</select>";
+
+                        return res;
+                    }
+                },
+                {
+                    "orderable": false,
+                    data: 'city'
+                },
+                {
+                    "orderable": false,
+                    data: 'manage',
+                    render: function (data, type, row) {
+                        var res = "<i class=\"fas fa-pen\" onclick=\"$.coremanage.listEdit($(this), 'streets')\"></i>" +
+                                  "<i style='display: none' class=\"fas fa-check\" onclick=\"$.coremanage.listEdit($(this), 'streets')\"></i>";
+
+                        return res;
+                    }
+                }
+            ]
         });
     });
 });

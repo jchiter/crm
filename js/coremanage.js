@@ -152,25 +152,41 @@ $.messageLevelTitle =
                 this.DataSend(queryString);
             },
 
-            listEdit: function (elem, elemSelect) {
+            listEdit: function (elem, typeList) {
                 var queryString = 0;
 
-                $(elem).parent().find("span.text").text($(elem).parent().find("input").val());
-                $(elem).parent().find("input").remove();
-                $(elem).parent().find("span.text").show();
-                $(elem).hide();
-                $(elem).prev().show();
+                if (elem.hasClass("selectpicker")) {
+                    queryString = this.QueryString($.coremanage.GetEventId("LIST_EDIT"), elem.val() + "&typeList=" + typeList + "&listId=" + elem.closest("tr").find("span.text").attr("list-id") + "&isSelect=1");
+                    this.DataSend(queryString);
+                } else if (elem.hasClass("fa-check")) {
+                    elem.hide();
+                    elem.closest("tr").find("i.fa-pen").show();
+                    elem.closest("tr").find("input").hide();
+                    elem.closest("tr").find("span.text").show();
+                    if (elem.closest("tr").find("span.text").html() !== elem.closest("tr").find("input").val()) {
+                        queryString = this.QueryString($.coremanage.GetEventId("LIST_EDIT"), elem.closest("tr").find("input").val() + "&typeList=" + typeList + "&listId=" + elem.closest("tr").find("span.text").attr("list-id"));
+                        this.DataSend(queryString);
+                    }
+                } else if (elem.hasClass("fa-pen")) {
+                    elem.hide();
+                    elem.closest("tr").find("i.fa-check").show();
+                    elem.closest("tr").find("span.text").hide();
+                    elem.closest("tr").find("input").val(elem.closest("tr").find("span.text").html());
+                    elem.closest("tr").find("input").show();
+                }
 
                 optionsQuery.success = function (receive) {
                     WriteMessageDebug(receive);
 
                     var receiveArray = JSON.parse(receive);
-                    if (parseInt(receiveArray.status) != $.messageLevels.SUCCESS)
-                        $.coreui.showDialog(receiveArray.message, receiveArray.status);
+                    if (parseInt(receiveArray.status) !== $.messageLevels.SUCCESS) {
+                        $.coreui.bootstrapMessage(receiveArray.status, receiveArray.message);
+                    } else {
+                        if (!elem.hasClass("selectpicker")) {
+                            elem.closest("tr").find("span.text").html(elem.closest("tr").find("input").val());
+                        }
+                    }
                 };
-
-                queryString = this.QueryString($.coremanage.GetEventId("LIST_EDIT"), $(elem).parent().find("span.text").text() + "&nameVal=" + elemSelect.attr("name") + "&valid=" + $(elem).parent().find("span.text").attr("id"));
-                this.DataSend(queryString);
             },
 
             listRemove: function (elem, elemSelect) {
@@ -266,7 +282,73 @@ $.messageLevelTitle =
                 $("input[name=orderto_datepicker]").val(sevenDateStr);
             },
 
-            showOrders: function (type) {
+            showOrdersByLink: function (type) {
+                var valToDate = 0;
+                var currentDate = new Date();
+                var currentMonth = parseInt(currentDate.getMonth() + 1) < 10 ? "0" + (currentDate.getMonth() + 1) : currentDate.getMonth() + 1;
+                var currentDay = parseInt(currentDate.getDate()) < 10 ? "0" + (currentDate.getDate()) : currentDate.getDate();
+                var curDateStr = currentDay + "." + currentMonth + "." + currentDate.getFullYear();
+
+                switch (parseInt(type)) {
+                    // Сегодня
+                    case 0:
+                        valToDate = 0;
+                        break;
+
+                    // Завтра
+                    case 1:
+                        valToDate = 86400;
+                        break;
+
+                    // Неделя
+                    case 2:
+                        valToDate = 86400 * 7;
+                        break;
+
+                    // Две недели
+                    case 3:
+                        valToDate = 86400 * 14;
+                        break;
+
+                    // Месяц
+                    case 4:
+                        valToDate = 86400 * 30;
+                        break;
+
+                    // Два месяца
+                    case 5:
+                        valToDate = 86400 * 60;
+                        break;
+
+                    // Квартал
+                    case 6:
+                        valToDate = 86400 * 90;
+                        break;
+
+                    // Год
+                    case 7:
+                        valToDate = 86400 * 365;
+                        break;
+
+                    default:
+                        valToDate = 0;
+                }
+
+                var sevenDate = new Date(Math.ceil(((new Date().getTime() / 1000) + valToDate)) * 1000);
+                var sevenDay = parseInt(sevenDate.getDate()) < 10 ? "0" + (sevenDate.getDate()) : sevenDate.getDate();
+                var sevenMonth = parseInt(sevenDate.getMonth() + 1) < 10 ? "0" + (sevenDate.getMonth() + 1) : sevenDate.getMonth() + 1;
+                var sevenDateStr = sevenDay + "." + sevenMonth + "." + sevenDate.getFullYear();
+
+                $("input[name=orderfrom_datepicker]").val(curDateStr);
+                $("input[name=orderto_datepicker]").val(sevenDateStr);
+
+                $.coremanage.showOrders();
+
+                //$("#uploadForm").ajaxSubmit(optionsQuery, true, $.coremanage.GetEventId("SHOW_ORDERS"));
+                //$('#showOrder').trigger('click');
+            },
+
+            showOrders: function () {
                 $("#uploadForm").ajaxSubmit(optionsQuery, true, $.coremanage.GetEventId("SHOW_ORDERS"));
                 $('#showOrder').trigger('click');
             },
@@ -539,6 +621,7 @@ $.messageLevelTitle =
 
                     if (isDialog) {
                         BootstrapDialog.show({
+                            cssClass: "modal-center",
                             size: BootstrapDialog.SIZE_LARGE,
                             type: BootstrapDialog.TYPE_INFO,
                             title: $(receive).find(".caption").val(),
@@ -648,21 +731,23 @@ $.messageLevelTitle =
                             }
                         };
 
+                        salesBackgroundColors = [
+                            "white",
+                            "silver",
+                            "gray",
+                            "red",
+                            "orange",
+                            "yellow",
+                            "green",
+                            "skyblue"
+                        ];
+
                         if (isSale) {
                             dataArr = {
                                 labels: receiveArray.saleName,
                                 datasets: [{
                                     borderColor: '#248ee6',
-                                    backgroundColor: [
-                                        "white",
-                                        "silver",
-                                        "gray",
-                                        "red",
-                                        "orange",
-                                        "yellow",
-                                        "green",
-                                        "blue"
-                                    ],
+                                    backgroundColor: salesBackgroundColors,
                                     data: receiveArray.saleCount
                                 }]
                             };
@@ -671,7 +756,6 @@ $.messageLevelTitle =
 
                             };
                         }
-                        console.log(isSale ? 'pie' : 'line');
                         var chart = new Chart(ctx.getContext('2d'), {
                             type: isSale ? 'pie' : 'line',
                             data: dataArr,
@@ -680,9 +764,45 @@ $.messageLevelTitle =
                     }
 
                     $(".summary .form-group").html(receiveArray.summary);
+
+                    $(".chartTableBlock").find(".chartTable").html("");
+                    chartTableBlock = $(".chartTableBlock").clone();
+                    $(".chartTableBlock").remove();
+
+                    var chartTableRow = "<tr></tr>";
+                    if (isSale) {
+                        chartTableBlock.find(".chartTable").append("<thead><tr><th>#</th><th>Канал</th><th>Продаж</th></tr></thead>");
+                        for (i = 0; i < receiveArray.saleName.length; i++) {
+                            chartTableRow = $("<tr></tr>");
+                            chartTableRow.css("background-color", salesBackgroundColors[i]);
+                            chartTableRow.append("<td>" + (i + 1) + "</td>");
+                            chartTableRow.append("<td>" + receiveArray.saleName[i] + "</td>");
+                            chartTableRow.append("<td>" + receiveArray.saleCount[i] + "</td>");
+                            chartTableBlock.find(".chartTable").append(chartTableRow);
+                        }
+                    } else {
+                        chartTableBlock.find(".chartTable").append("<thead><tr><th>#</th><th>" + (receiveArray.rangeType === "d" ? "День" : "Месяц") + "</th><th>Сумма</th></tr></thead>");
+                        for (i = 0; i < receiveArray.date.length; i++) {
+                            chartTableRow = $("<tr></tr>");
+                            chartTableRow.append("<td>" + (i + 1) + "</td>");
+                            chartTableRow.append("<td>" + receiveArray.date[i] + "</td>");
+                            chartTableRow.append("<td>" + receiveArray.amount[i] + "</td>");
+                            chartTableBlock.find(".chartTable").append(chartTableRow);
+                        }
+                    }
+
+                    $("#myChart").parent().append(chartTableBlock);
+                    chartTableBlock.show();
+                    chartTableBlock.find(".chartTable").DataTable({
+                        "order": [[ 3, "desc" ]]
+                    });
                 };
 
                 $("#uploadForm").ajaxSubmit(optionsQuery, true, isSale ? $.coremanage.GetEventId("SHOW_STATISTIC_SALE") : $.coremanage.GetEventId("SHOW_STATISTIC"));
+            },
+
+            citiesEdit: function (isSale) {
+
             }
         };
     })();

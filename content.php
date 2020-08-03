@@ -8,17 +8,25 @@
 
     <link rel="icon" type="image/png" href="styles/fimg/login/icons/favicon.ico">
 
-    <link rel="stylesheet" href="styles/fonts/login/font-awesome-4.7.0/css/font-awesome.min.css?nocache=<?php echo rand(); ?>">
+    <!--<link rel="stylesheet" href="styles/fonts/login/font-awesome-4.7.0/css/font-awesome.min.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap.min.css?nocache=<?php echo rand(); ?>">
-    <link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap-select.min.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap-datetimepicker.min.css?nocache=<?php echo rand(); ?>">
-    <link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap-dialog.min.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/animate/animate.css?nocache=<?php echo rand(); ?>">
+	<!--<link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap-table.min.css">-->
+
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-dialog.min.css?nocache=<?php echo rand(); ?>">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-select.min.css?nocache=<?php echo rand(); ?>">
+    <link rel="stylesheet" href="vendor/datatables/datatables.min.css">
+    <link rel="stylesheet" href="vendor/datetimepicker/datetimepicker.css">
+    <link rel="stylesheet" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="styles/fcss/sb-admin-2.min.css">
+
     <link rel="stylesheet" href="styles/fcss/table.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/login/util.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/login/main.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/dialog/dialog.css?nocache=<?php echo rand(); ?>">
-	<!--<link rel="stylesheet" href="styles/fcss/bootstrap/bootstrap-table.min.css">-->
 
     <link rel="stylesheet" href="styles/global.css?nocache=<?php echo rand(); ?>">
     <link rel="stylesheet" href="styles/fcss/content.css?nocache=<?php echo rand(); ?>">
@@ -26,7 +34,7 @@
 
 <body>
 <?php
-if (strcmp($httpHandler->GetPageName(), "main") != 0) {
+if (!in_array($httpHandler->GetPageName(), ["main", "dictionary"])) {
     ?>
     <div>
         <nav class="navbar navbar-default">
@@ -78,7 +86,7 @@ if (strcmp($httpHandler->GetPageName(), "main") != 0) {
 }
 ?>
 <div class="bg-contact2">
-    <div class="container-contact2" <?php echo strcmp($httpHandler->GetPageName(), "main") == 0 ? "style='min-height: 100vh;'" : ""; ?>>
+    <div class="container-contact2" <?php echo in_array($httpHandler->GetPageName(), ["main", "dictionary"]) ? "style='min-height: 100vh;'" : ""; ?>>
         <?php
         $block->Content();
         ?>
@@ -96,28 +104,41 @@ if (strcmp($httpHandler->GetPageName(), "main") != 0) {
         </div>
     </div>
 </div>
-<script src="js/jquery/jquery-1.12.4.min.js"></script>
-<script src="js/bootstrap/popper.min.js"></script>
+<!--<script src="js/jquery/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/bootstrap/bootstrap-select.js"></script>
 <script src="js/bootstrap/defaults-ru_RU.js"></script>
 <script src="js/bootstrap/bootstrap-formhelpers-phone.js"></script>
 <script src="js/bootstrap/moment-with-locales.min.js"></script>
 <script src="js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="js/bootstrap/bootstrap-dialog.min.js"></script>
 <script src="js/jquery/jquery.fancybox.js"></script>
 <script src="js/jquery/jquery.fancybox-buttons.js"></script>
 <script src="js/jquery/jquery.fancybox-media.js"></script>
 <script src="js/jquery/jquery.fancybox-thumbs.js"></script>
 <script src="js/jquery/jquery.form.js"></script>
-<script src="js/jquery/jquery.confirm.js"></script>
 <script src="js/jquery/jquery.animate-colors.js"></script>
-<script src="js/global.js?nocache=<?php echo rand(); ?>"></script>
-<script src="js/coreui.js?nocache=<?php echo rand(); ?>"></script>
-<script src="js/coremanage.js?nocache=<?php echo rand(); ?>"></script>
-<script src="https://api-maps.yandex.ru/2.1.60/?lang=ru_RU" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<!--<script src="js/bootstrap/bootstrap-table.min.js?nocache=<?php echo rand(); ?>"></script>
+<script src="https://api-maps.yandex.ru/2.1.77/?lang=ru_RU" type="text/javascript"></script>
+
+<script src="js/bootstrap/bootstrap-table.min.js?nocache=<?php echo rand(); ?>"></script>
 <script src="js/bootstrap/bootstrap-table-ru-RU.min.js?nocache=<?php echo rand(); ?>">-->
+
+<script type="text/javascript" src="vendor/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="vendor/form/jquery.form.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+<script type="text/javascript" src="vendor/popper/popper.min.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="vendor/moment/moment.min.js"></script>
+<script type="text/javascript" src="vendor/moment/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="vendor/datetimepicker/datetimepicker.js"></script>
+<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/js/bootstrap-select.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/js/i18n/defaults-ru_RU.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script type="text/javascript" src="js/global.js?nocache=<?php echo rand(); ?>"></script>
+<script type="text/javascript" src="js/coreui.js?nocache=<?php echo rand(); ?>"></script>
+<script type="text/javascript" src="js/coremanage.js?nocache=<?php echo rand(); ?>"></script>
 </body>
 </html>

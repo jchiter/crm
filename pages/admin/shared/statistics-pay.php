@@ -21,8 +21,6 @@ while ($item = $db->fetch_array($resultOrders))
     array_push($orderArray, $item);
     $allAmount += intval($item[OrderTableStruct::$columnAmount]);
 }
-
-$filterDayArr = array("неделя" => 86400 * 7, "две недели" => 86400 * 14, "месяц" => 86400 * 30, "два месяца" => 86400 * 60, "квартал" => 86400 * 90, "год" => 86400 * 365);
 ?>
 
 <div class="limiter">
@@ -66,6 +64,9 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
                 </div>
             </form>
             <canvas id="myChart"></canvas>
+            <div class="chartTableBlock">
+                <table class="chartTable table" data-pagination="true" data-search="true" data-toggle="table"></table>
+            </div>
         </div>
     </div>
 </div>

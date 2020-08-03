@@ -143,6 +143,37 @@ class DB_mysql
     {
         return mysqli_errno($this->link);
     }
+
+    function PrepareQueryUpdate($tableName, $elements, $whereElements = [], $returnColumn = "id") {
+        $values = "";
+        foreach ($elements as $name => $value) {
+            if ($name == "id")
+                continue;
+
+            if ($value == "NULL" || strlen($value) == 0)
+                $values .= $name . " = NULL, ";
+            else
+                $values .= $name . " = '" . $value . "', ";
+        }
+
+        $values = substr($values, 0, strlen($values) - 2);
+        $strFormat = "UPDATE %s SET %s ";
+        if (empty($whereElements) && isset($elements["id"])) {
+            $strFormat .= " WHERE %s";
+            $queryString = sprintf($strFormat, $tableName, $values, "id = " . $elements["id"]);
+        } else if (!empty($whereElements)) {
+            $whereText = "";
+            foreach ($whereElements as $elemName => $elemValue) {
+                $whereText .= $elemName . " = '" . $elemValue . "' AND ";
+            }
+
+            $strFormat .= " WHERE %s";
+            $whereText = substr($whereText, 0, strlen($whereText) - 4);
+            $queryString = sprintf($strFormat, $tableName, $values, $whereText);
+        }
+
+        return $queryString;
+    }
 }
 
 ?>

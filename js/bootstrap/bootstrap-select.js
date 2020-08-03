@@ -389,11 +389,11 @@ function showEditItem(t, ev) {
     actionsBox: false,
     iconBase: 'glyphicon',
     tickIcon: 'glyphicon-ok',
-      removeIcon: 'glyphicon-remove',
-      editIcon: 'glyphicon-pencil',
+    removeIcon: 'glyphicon-remove',
+    editIcon: 'glyphicon-pencil',
     showTick: false,
-      showremove: false,
-      showedit: false,
+    showremove: false,
+    showedit: false,
     template: {
       caret: '<span class="caret"></span>'
     },

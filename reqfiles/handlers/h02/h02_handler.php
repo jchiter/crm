@@ -229,46 +229,57 @@ class h02Handler extends LoginHandler
 
     function ListEdit()
     {
-        global $messageHandler, $httpHandler, $nameTable, $prepayTable, $eventTable, $salesTable, $streetTable;
+        global $messageHandler, $httpHandler, $nameTable, $citiesTable, $districtsTable, $prepayTable, $eventTable, $salesTable, $streetTable;
 
         if ($httpHandler->GetAccessLevel() != LEVEL_EDIT) {
             echo $messageHandler->JsonMessageError("У вас нет права доступа для выполнения операции");
             return false;
         }
 
-        $nameVal = strip_tags($_POST["nameVal"]);
-        if (strlen($nameVal) <= 0) {
+        $typeList = strip_tags($_POST["typeList"]);
+        if (strlen($typeList) <= 0) {
             echo $messageHandler->JsonMessageError("Значение не изменено. Ошибка получения данных.");
             return false;
         }
 
-        $valId = intval($_POST["valid"]);
-        if ($valId <= 0) {
+        $listId = intval($_POST["listId"]);
+        if ($listId <= 0) {
             echo $messageHandler->JsonMessageError("Значение не изменено. Ошибка получения данных.");
             return false;
         }
 
         $currentTable = 0;
         $currentStruct = PrepayTableStruct;
+        $queryString = "";
 
-        if (strcmp($nameVal, CaptionField::$inputPrepayType) == 0)
-            $currentTable = $prepayTable;
-        else if (strcmp($nameVal, CaptionField::$inputName) == 0) {
-            $currentTable = $nameTable;
-            $currentStruct = NameTableStruct;
-        } else if (strcmp($nameVal, CaptionField::$inputEvent) == 0) {
-            $currentTable = $eventTable;
-            $currentStruct = EventTableStruct;
-        } else if (strcmp($nameVal, CaptionField::$inputSalesType) == 0) {
-            $currentTable = $salesTable;
-            $currentStruct = SalesTableStruct;
-        } else if (strcmp($nameVal, CaptionField::$inputStreet) == 0) {
+        if ("crm_" . $typeList === TABLE_CITIES) {
+            $currentStruct = CitiesTableStruct;
+            $currentTable = $citiesTable;
+            $queryString = "`" . $currentStruct::$columnID . "` = '" . $listId . "'";
+        } else if ("crm_" . $typeList === TABLE_DISTRICT) {
+            $currentStruct = DistrictTableStruct;
+            $currentTable = $districtsTable;
+            //$queryString = "`" . $currentStruct::$columnID . "` = '" . $listId . "' AND " . $currentStruct::$columnID_City;
+            if ($_POST["isSelect"]) {
+                $columns = [DistrictTableStruct::$columnID_City => $_POST["data"]];
+                $where = [DistrictTableStruct::$columnID => $listId];
+            } else {
+                $columns = [DistrictTableStruct::$columnName => $_POST["data"]];
+                $where = [DistrictTableStruct::$columnID => $listId];
+            }
+        } else if ("crm_" . $typeList === TABLE_STREETS) {
             $currentTable = $streetTable;
-            $currentStruct = StreetTableStruct;
+            if ($_POST["isSelect"]) {
+                $columns = [StreetTableStruct::$columnID_District => $_POST["data"]];
+                $where = [StreetTableStruct::$columnID => $listId];
+            } else {
+                $columns = [StreetTableStruct::$columnName => $_POST["data"]];
+                $where = [StreetTableStruct::$columnID => $listId];
+            }
         }
 
         $resultText = $messageHandler->JsonMessageSuccess("Значение успешно изменено");
-        switch ($currentTable->Update("`" . $currentStruct::$columnID . "` = '" . $valId . "'")) {
+        switch ($currentTable->Update($columns, $where)) {
             case RESULT_ERROR_DB:
                 $resultText = $messageHandler->JsonMessageError("Значение не изменено. Ошибка базы данных.");
                 break;
@@ -396,6 +407,7 @@ class h02Handler extends LoginHandler
         }
 
         $orderArray["summary"] = sprintf("%s %d %s на сумму %s руб.", $stringHandler->numberof($resultCount, 'Выбран', array('', 'о', 'о')), $resultCount, $stringHandler->numberof($resultCount, 'заказ'), number_format($resultAmount, 0, '.', ' '));
+        $orderArray["rangeType"] = $_POST["range-type"];
 
         echo json_encode($orderArray);
     }
@@ -431,6 +443,10 @@ class h02Handler extends LoginHandler
         }
 
         echo json_encode($orderArray);
+    }
+
+    function DictionaryEdit() {
+        print_r($_GET);
     }
 }
 

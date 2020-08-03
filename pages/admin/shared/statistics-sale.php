@@ -35,6 +35,9 @@ $dateTo = strlen($_POST['orderto_datepicker']) > 0 ? $_POST['orderto_datepicker'
                 </div>
             </form>
             <canvas id="myChart"></canvas>
+            <div class="chartTableBlock">
+                <table class="chartTable table" data-pagination="true" data-search="true" data-toggle="table"></table>
+            </div>
         </div>
     </div>
 </div>

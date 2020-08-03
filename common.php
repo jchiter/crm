@@ -31,6 +31,8 @@ require("reqfiles/handlers/other/for_tables/member_handler.php");
 
 // Таблицы
 require("reqfiles/classes/tables/user_table.php");
+require("reqfiles/classes/tables/cities_table.php");
+require("reqfiles/classes/tables/district_table.php");
 require("reqfiles/classes/tables/street_table.php");
 require("reqfiles/classes/tables/event_table.php");
 require("reqfiles/classes/tables/sex_table.php");
@@ -56,6 +58,8 @@ $loginHandler = new LoginHandler();
 $memberHandler = new MemberHandler();
 
 $userTable = new UserTable();
+$citiesTable = new CitiesTable();
+$districtsTable = new DistrictTable();
 $streetTable = new StreetTable();
 $eventTable = new EventTable();
 $sexTable = new SexTable();

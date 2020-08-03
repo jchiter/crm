@@ -6,6 +6,8 @@ define("DEFAULT_COUNT_ITEMS", 5);
 define("DEFAULT_TYPE_SORT", "desc");
 
 define("TABLE_USERS", "crm_users");
+define("TABLE_CITIES", "crm_cities");
+define("TABLE_DISTRICT", "crm_district");
 define("TABLE_STREETS", "crm_streets");
 define("TABLE_EVENTS", "crm_events");
 define("TABLE_ORDERS", "crm_orders");

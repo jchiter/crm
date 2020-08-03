@@ -66,8 +66,47 @@
                 });
             },
 
-            showDialog: function (text, type, timeout, options)
-            {
+            bootstrapMessage: function(type, message, closable, buttonsArr) {
+                var typeClass;
+                switch (parseInt(type))
+                {
+                    case parseInt($.messageLevels.SUCCESS):
+                        typeClass = BootstrapDialog.TYPE_SUCCESS;
+                        break;
+
+                    case parseInt($.messageLevels.INFO):
+                        typeClass = BootstrapDialog.TYPE_PRIMARY;
+                        break;
+
+                    case parseInt($.messageLevels.WARNING):
+                        typeClass = BootstrapDialog.TYPE_WARNING;
+                        break;
+
+                    case parseInt($.messageLevels.ERROR):
+                    case parseInt($.messageLevels.DBERROR):
+                        typeClass = BootstrapDialog.TYPE_DANGER;
+                        break;
+                }
+
+                BootstrapDialog.show({
+                    message: message,
+                    size: BootstrapDialog.SIZE_LARGE,
+                    type: typeClass,
+                    cssClass: "modal-center",
+                    buttons: buttonsArr,
+                    closable: closable,
+                    onshow: function(e) {
+                        modalHeader = e.getModalHeader();
+                        modalHeader.prepend($.messageLevelTitle[type]);
+                        modalHeader.find(".bootstrap-dialog-header").remove();
+                        if (closable) {
+                            modalHeader.find(".alert").append("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'></button>");
+                        }
+                    }
+                });
+            },
+
+            showDialog: function (text, type, timeout, options) {
                 var dialog = $("#faDialog");
                 var card = dialog.find('.dialog-card');
                 var typeIcon, typeClass;

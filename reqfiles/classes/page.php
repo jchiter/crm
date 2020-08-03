@@ -25,7 +25,11 @@ class Page
 
     var $pages_admin_edit = array(
         "new_order",
-        "edit_order"
+        "edit_order",
+        "dictionary",
+        "dictionary-cities",
+        "dictionary-districts",
+        "dictionary-streets"
     );
 
     var $name_pages = array(

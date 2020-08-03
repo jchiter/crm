@@ -15,17 +15,17 @@ if ($opIndex >= 0 && $opIndex <= count($allEvents))
 else
     die("Not found event.");
 
-$sharedArray = array(
+$sharedArray = [
     "SYSTEM_ENTER" => "SystemEnter",
     "SHOW_MODULE" => "ShowModule"
-);
+];
 
-$sharedLoginArray = array(
+$sharedLoginArray = [
     "SYSTEM_EXIT" => "SystemExit",
     "PROFILE_EDIT" => "ProfileEdit"
-);
+];
 
-$sharedAdminArray = array();
+$sharedAdminArray = [];
 
 $h02Array = [
     "CREATE_ORDER" => "CreateOrder",

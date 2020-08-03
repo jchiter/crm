@@ -51,7 +51,7 @@ while ($item = $db->fetch_array($resultOrders))
     $allAmount += intval($item[OrderTableStruct::$columnAmount]);
 }
 
-$filterDayArr = array("неделя" => 86400 * 7, "две недели" => 86400 * 14, "месяц" => 86400 * 30, "два месяца" => 86400 * 60, "квартал" => 86400 * 90, "год" => 86400 * 365);
+$filterDayArr = array("сегодня" => 0, "завтра" => 86400, "неделя" => 86400 * 7, "две недели" => 86400 * 14, "месяц" => 86400 * 30, "два месяца" => 86400 * 60, "квартал" => 86400 * 90, "год" => 86400 * 365);
 ?>
 
 <div class="limiter">
@@ -70,7 +70,7 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
 
                                 foreach ($filterDayArr as $filterDay => $val)
                                 {
-                                    $isActive = "onclick='$.coremanage.showOrders(". $i .")'";
+                                    $isActive = "onclick='$.coremanage.showOrdersByLink(". $i .")'";
 
                                     if ($dateRangeUnix == $val)
                                         $isActive = "class='active'";
@@ -117,7 +117,7 @@ $filterDayArr = array("неделя" => 86400 * 7, "две недели" => 8640
                     </div>
                 </div>
             </form>
-            <table class="orderView table" data-pagination="true" data-search="true" data-toggle="table">
+            <table class="dataView table" data-pagination="true" data-search="true" data-toggle="table">
                 <col width="40px">
                 <col width="560px">
                 <col width="400px">
